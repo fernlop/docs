@@ -167,7 +167,7 @@ async function addToGroup() {
       }, 
       headers: {
         'Content-Type' : 'application/json',
-        Authorization: `${(await fetchAuthSession()).tokens.accessToken.payload}`
+        Authorization: `${(await fetchAuthSession()).tokens.accessToken.toString()}`
       } 
   }
   return post({apiName, path, options});
@@ -177,13 +177,13 @@ async function listEditors(limit){
   let apiName = 'AdminQueries';
   let path = '/listUsersInGroup';
   let options = { 
-      queryStringParameters: {
+      queryParams: {
         "groupname": "Editors",
         "limit": limit,
       },
       headers: {
         'Content-Type' : 'application/json',
-        Authorization: `${(await fetchAuthSession()).tokens.accessToken.payload}`
+        Authorization: `${(await fetchAuthSession()).tokens.accessToken.toString()}`
       }
   }
   const response = await get({apiName, path, options});
